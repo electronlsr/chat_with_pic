@@ -15,12 +15,12 @@ def process_csv(csv_path):
     completion = client.chat.completions.create(
         model = config['Model']['transfer_model'],
         messages = [
-            {"role": "system", "content": "接下来我将给出一个csv文件的内容，它基于图片识别而来，请你将其中的信息整理好方便我将其转换为数据库。具体要求：1. 每一列都有具体含义，请你完善第一行以注明每一列的标题，这在之后会被转换为数据库的字段名 2. 无用的、不知道意义的数据可以删除 3. 如果某一列的数据的类型不同（比如同时出现了 90 和 优秀），请务必确保你根据自己的理解将其全都转换成同一种数据类型，以便我直接存入数据库后续调取使用 4. 你只需要返回整理后的 csv 的内容，不可以返回其他任何东西，也不要附带任何格式。以下是内容："},
+            {"role": "system", "content": "接下来我将给出一个csv文件的内容，它基于图片识别而来，请你将其中的信息整理好方便我将其转换为数据库。具体要求：1. 每一列都有具体含义，其中某些列可能已经给出标题，如果没有给出标题请你完善第一行以注明每一列的标题，这在之后会被转换为数据库的字段名 2. 无用的、不知道意义的数据可以删除 3. 如果某一列的数据的类型不同（比如同时出现了 90 和 优秀），请务必确保你根据自己的理解将其全都转换成同一种数据类型，以便我直接存入数据库后续调取使用 4. 你只需要返回整理后的 csv 的内容，不可以返回其他任何东西，也不要附带任何格式。以下是内容："},
             {"role": "user", "content": data}
         ]
     )
     with open(csv_path, "w", encoding='utf-8') as file:
-        file.write(completion.choices[0].message.content)
+        file.write(completion.choices[0].message.content.replace("```", "").replace("csv", "").strip())
 
 def process_query(query, info):
     completion = client.chat.completions.create(

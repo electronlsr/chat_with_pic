@@ -39,7 +39,7 @@ def interactive(db_path):
         commands_res = db.execute_commands(conn, commands)
         aiapi.query_final(query, info, commands_res)
         
-# db_path = preprocess()
-db_path = 'output/db/65c5b9a5-27ab-48f3-bfd3-5b3f4a1ba663.db'
+db_path = preprocess()
+# db_path = 'output/db/4d9e4ec7-daf8-4849-b60d-8871f20f9e81.db'
 print("All processes finished. Start interactive mode.")
 interactive(db_path)
