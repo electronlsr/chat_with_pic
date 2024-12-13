@@ -140,9 +140,9 @@ def func5(download_url):
     with open(f'{config["Directory"]["xlsx_dir"]}/{photo_uuid}.xlsx', "wb") as file:
         file.write(response.content)
 
-def pic_to_xlsx(fp):
+def pic_to_xlsx(fp, uuid = uuid.uuid4()):
     global photo_uuid, file_path, fileext, mime_type
-    photo_uuid = uuid.uuid4()
+    photo_uuid = uuid
     file_path = fp
     fileext = pathlib.Path(file_path).suffix.lstrip(".").lower()
     mime_type = mime_types.get(fileext, "image/png")

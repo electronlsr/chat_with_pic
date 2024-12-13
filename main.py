@@ -5,6 +5,9 @@ import os
 from xlsx_to_db import xlsx_to_db
 import db
 import aiapi
+from preprocess_pic import crop_image
+import uuid
+
 
 root = Tk()
 root.withdraw()
@@ -16,6 +19,10 @@ if not pic_path:
 print("Pic path:", pic_path)
 
 def preprocess():
+    ch = input("Do you want to crop the image? (y/n) ")
+    global pic_path
+    if ch.lower() == "y":
+        pic_path = crop_image(pic_path, uuid=uuid.uuid4())
     print("Starting pic to xlsx...")
     xlsx_path = pic_to_xlsx(pic_path)
     # xlsx_path = 'output/xlsx/0194cc08-946f-4cfd-acee-4baec579fda9.xlsx'
