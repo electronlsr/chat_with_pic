@@ -19,12 +19,12 @@ def preprocess():
     print("Starting pic to xlsx...")
     xlsx_path = pic_to_xlsx(pic_path)
     # xlsx_path = 'output/xlsx/0194cc08-946f-4cfd-acee-4baec579fda9.xlsx'
-    print("Pic to xlsx finished. XLSX file:", xlsx_path)
+    print("finished. XLSX file:", xlsx_path)
 
     print("Starting xlsx to db...")
     db_path = xlsx_to_db(xlsx_path)
     # db_path = 'output/db/0194cc08-946f-4cfd-acee-4baec579fda9.db'
-    print("Xlsx to db finished. DB file:", db_path)
+    print("finished. DB file:", db_path)
     return db_path
 
 def interactive(db_path):

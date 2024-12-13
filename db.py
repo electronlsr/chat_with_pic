@@ -1,6 +1,5 @@
 import sqlite3
 import configparser
-import os
 
 config = configparser.ConfigParser()
 config.read("config.conf")
